@@ -1,3 +1,42 @@
+Lab2 - Eureka Client
+	Spring Initializer
+		Group - Day1
+		Artifact - Day1.demo2.EurekaClient1
+		
+		Dependencies - Eureka Discover Client, Spring Web Starter
+		Import
+	After import
+	1. Change Application.java to EurekaClientApp1 and have code
+		@SpringBootApplication
+		@EnableEurekaClient
+		public class EurekaClientApp1 {
+	
+			public static void main(String[] args) {
+				SpringApplication.run(EurekaClientApp1.class, args);
+			}
+		}
+
+	2. Write MyController
+	@RestController
+	public class MyController {
+
+		@GetMapping(value="/")
+		public String sayhello() {
+			return "EurekaClient1- MyController-SayHello" ;
+		}
+	}
+	
+	3. change application.properties file to include
+		server.port=8090
+		spring.application.name=Client1
+		eureka.client.register-with-eureka=true
+		eureka.client.fetch-registry=false
+		
+	4. Run application
+		Check Eureka Server to check instance
+		
+		
+		
 Lab1 - Eureka Server
 	Spring Initializer = https://start.spring.io/
 	Maven, Java, 2.1.6, 
