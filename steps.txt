@@ -1,0 +1,28 @@
+Lab1 - Eureka Server
+	Spring Initializer = https://start.spring.io/
+	Maven, Java, 2.1.6, 
+	Project details - Day1, Day1.demo1.EurekaServer
+	
+	Dependency - EurekaServer
+	
+	Generate -> download project
+	
+	On STS -> Import maven project
+	start -> build 
+	
+	1. Rename Application -> EurekaServerApp 
+		add annotation for application
+			@EnableEurekaServer
+	2. run application
+		http://localhost:8080
+			observe eureka application
+	3. modify application.properties 
+		server.port=8761
+		eureka.client.register-with-eureka=false
+		eureka.client.fetch-registry=false
+
+	4. run application
+		http://localhost:8761
+			observe eureka application	
+	
+	
