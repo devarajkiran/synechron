@@ -1,3 +1,18 @@
+Lab 5 - Change Eureka Server port (8765)
+	Client Properties - eureka.client.serviceUrl.defaultZone=http://localhost:8765/eureka
+		eureka.client.serviceUrl.defaultZone=http://localhost:8765/eureka
+		
+	Write - new Application
+		Code to connect to Client1 and Client2
+		Display a page 
+	Day1.Lab1
+		-> Write a client to show combined message from Client1 and Client2
+		Output / In MyClient2Controller
+				 EurekaClient1- MyController-SayHello (red)
+				 EurekaClient1- MyController-SayHello (green)
+				 
+		
+		
 Lab 4 - Eureka demo for Server Side LoadBalancing
 	1. Change Client 1 to create multiple instance of client1 service
 		change Controller code to 
