@@ -1,3 +1,29 @@
+Lab 4 - Eureka demo for Server Side LoadBalancing
+	1. Change Client 1 to create multiple instance of client1 service
+		change Controller code to 
+			@GetMapping(value="/")
+	public String sayhello() {
+		return "<h1 style='color:green;'>EurekaClient1- MyController-SayHello<h1>" ;
+	}
+		server.port=8090
+		
+	1st Instance -----> EurekaClientApp1 -> run as application
+	
+	Modify Controller code to change green to red
+	modify port to 8091
+	2nd Instance -----> EurekaClientApp1 -> run as application
+	
+	Test the Client2 (on refresh -> Round Robin in Red and green
+	Modify Controller code to change red to blue
+	modify port to 8092
+	3nd Instance -----> EurekaClientApp1 -> run as application
+	
+	Test the Client2 (on refresh -> Round Robin in Red, green and blue)
+	stop one EurekaClientApp1 
+		refresh faster -> error , two colours
+			after some time -> only two colours
+			
+			
 Lab3 - Eureka Client 2
 	Spring Initializer
 		Group - Day1
