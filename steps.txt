@@ -1,3 +1,57 @@
+Lab3 - Eureka Client 2
+	Spring Initializer
+		Group - Day1
+		Artifact - Day1.demo2.EurekaClient2
+		
+		Dependencies - Eureka Discovery Client, Spring Web Starter
+		Import
+	After import
+	1. Change Application.java to EurekaClientApp2 and have code
+		@SpringBootApplication
+		@EnableEurekaClient
+		public class EurekaClientApp2 {
+			
+			@Bean
+			@LoadBalanced
+			public RestTemplate resttmp() {
+				return new RestTemplate();
+			}
+			public static void main(String[] args) {
+				SpringApplication.run(EurekaClientApp2.class, args);
+			}
+		}
+
+	2. Write MyController
+		@RestController
+		public class MyClient2Controller {
+			
+			@Autowired
+			RestTemplate template ;
+			@GetMapping
+			public String get() {
+				//String url ="http://localhost:8090";
+				String url = "http://Client1"; // client1 is name of service
+			  String str = template.getForEntity(url, String.class).getBody();
+				
+				return "<h1>In MyClient2Controller</h1><h1>" + str + "</h1>" ;
+			}
+		}
+
+
+	3. change application.properties file to include
+		server.port=80
+		spring.application.name=Client2
+		eureka.client.register-with-eureka=true
+		eureka.client.fetch-registry=true
+
+	4. Run application
+		Check Eureka Server to check instances (client1, client2)
+		http://localhost:80 
+		
+		
+
+
+
 Lab2 - Eureka Client
 	Spring Initializer
 		Group - Day1
