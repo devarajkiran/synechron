@@ -1,3 +1,45 @@
+Lab 8 - FeignClient
+
+	Create Day2.demo6.FeignClient
+		OpenFeign, WebStarter
+	Write application to connect to proj1
+	Create MyController 
+	package demo;
+
+	import java.util.List;
+
+	import org.springframework.cloud.openfeign.FeignClient;
+	import org.springframework.web.bind.annotation.GetMapping;
+	@FeignClient(name="mycontroller", url="http://localhost:8080")
+	public interface MyController {
+
+		@GetMapping(value="/emps")
+		public List<Emp> list();
+		
+		@GetMapping(value="/list")
+		public List<Emp> list1();
+	}
+
+	Write Application and controller to test the same.
+		Application -> @EnableFeignClients
+		@Autowired
+	MyController mycon;
+	@GetMapping(value="/show")
+	public String showtable()
+	{
+		List<Emp> list = mycon.list();
+		String str = "<table bgcolor='cyan' border='1'>";
+		for (int i =0;i < list.size();i++) {
+			str+= "<tr><td>" + list.get(i).getEmpno() + "</td><td>" + list.get(i).getEname() + 
+					"</td><td>" + list.get(i).getSalary() + "</td></tr>";
+		}
+		str+= "</table>";
+		return str;
+	}
+	
+	
+
+
 Lab 7 - Create Day2.demo5.hystrixdemo
 	Actuator, hystrix, hystrix dashboard, web starter
 	change application.properties file
