@@ -21,7 +21,7 @@ Lab 8 - FeignClient
 	}
 
 	Write Application and controller to test the same.
-		Application -> @EnableFeignClients
+		Application -> @EnableFeignClients  (and also change server.port to 80)
 		@Autowired
 	MyController mycon;
 	@GetMapping(value="/show")
@@ -46,7 +46,7 @@ Lab 7 - Create Day2.demo5.hystrixdemo
 		server.port=80
 		management.endpoints.web.exposure.include=*
 	
-	Add @EnableHystrix and @EnableHystrixDashboard for application
+	Add @EnableHystrix and @EnableHystrixDashboard for application 
 	
 	Change the controller to include 
 	package Day2.Day2.demo5.hystrixdemo;
