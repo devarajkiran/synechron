@@ -1,3 +1,65 @@
+Lab 6 - Ribbon
+Create two projects
+	Project1 - Day2.demo1.proj1
+			-> Hsqldb, Web Starter, JPA
+				-> get -> return List of employees (1..5)
+				
+			download of Day2.demo1.proj1.jar file and setup in sts
+	Project2   Day2.demo2.proj2
+			-> Hsqldb, Web Starter, JPA
+				-> get -> return List of employees (5..10)
+		
+		ren  Day2.demo1.proj2.jar file, change to return 6..10 records
+		change application.properties -> server.port - 8081
+		
+		
+Project3 - Day2.demo3.ribbondemo
+		-> web, Ribbon
+		Create application.yml file 
+			simple:
+			 ribbon:
+			  eureka:
+			   enabled: false
+			  listOfServers: localhost:8080,localhost:8081
+			  ServerListRefreshInterval: 5000
+			server:
+			  port: 80 
+		-> ribbonapp.java
+		@SpringBootApplication
+@RestController
+public class RibbonApp {
+
+	public static void main(String[] args) {
+		SpringApplication.run(RibbonApp.class, args);
+	}
+	@Autowired
+	RestTemplate template;
+	
+	@Bean
+	@LoadBalanced
+	public RestTemplate resttmp() {
+		return new RestTemplate();
+	}
+	
+	@GetMapping()
+	public String showdata()
+	{
+		String str = template.getForEntity("http://simple/emps",String.class).getBody();
+		return "<h1>Current Data</h1><h2>" + str + "</h2>"  ;
+	}
+
+}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		  	 
 Lab 5 - Change Eureka Server port (8765)
 	Client Properties - eureka.client.serviceUrl.defaultZone=http://localhost:8765/eureka
 		eureka.client.serviceUrl.defaultZone=http://localhost:8765/eureka
