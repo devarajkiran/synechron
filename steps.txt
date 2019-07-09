@@ -1,3 +1,57 @@
+Lab 7 - Create Day2.demo5.hystrixdemo
+	Actuator, hystrix, hystrix dashboard, web starter
+	change application.properties file
+		server.port=80
+		management.endpoints.web.exposure.include=*
+	
+	Add @EnableHystrix and @EnableHystrixDashboard for application
+	
+	Change the controller to include 
+	package Day2.Day2.demo5.hystrixdemo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+@RestController
+@RequestMapping(value="/")
+public class MyController {
+
+	@GetMapping()
+	@HystrixCommand(commandKey="rc", groupKey="proj1", fallbackMethod="showdata_fall")
+	public String showdata()
+	{
+		System.out.println("In showdata");
+		RestTemplate template = new RestTemplate();
+		String str = template.getForEntity("http://localhost:8080/emps",String.class).getBody();
+		return "<h1>Current Data</h1><h2>" + str + "</h2>"  ;
+	}
+
+	public String showdata_fall()
+	{
+		System.out.println("*****in fallback");
+	//	RestTemplate template = new RestTemplate();
+	//	String str = template.getForEntity("http://localhost:8080/emps",String.class).getBody();
+		String str = "{ 'staticdata': 'cached info'	}";
+				
+		return "<h1>Current Data</h1><h2>" + str + "</h2>"  ;
+	}
+	}
+	
+	Run (proj1 of day2 and then hystrix)
+	http://localhost/hystrix (http://localhost/actuator/hystrix.stream)
+	Observe
+		numbers 
+		stop proj1
+		circuit status - close (20 mistakes ) -
+		start proj1 ->circuit status  open
+
+
+
+
 Lab 6 - Ribbon
 Create two projects
 	Project1 - Day2.demo1.proj1
