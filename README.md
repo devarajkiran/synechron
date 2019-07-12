@@ -29,3 +29,12 @@ $ docker run -p 8080:8080 bitnami/tomcat  // linux port: tomcat port
 $ docker run -p 8091:8080 bitnami/tomcat  // linux port: tomcat port 
 ## View HTTP Port on 80 Terminal > Edit Port to see Tomcat Welcome page
 https://2886795346-8091-cykoria01.environments.katacoda.com/sample/
+
+
+##RabbitMq:
+
+CloudAMQP website
+
+
+##NOSQL
+CAP Triangle
